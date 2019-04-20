@@ -36,9 +36,7 @@ const Layout = ({ children }) => (
         >
           <main>{children}</main>
           <footer>
-            © {new Date().getFullYear()}, Built with
-            {` `}
-            <a href="https://www.gatsbyjs.org">Gatsby</a>
+            Last built © {new Date().toJSON().slice(0,10).replace(/-/g,'/')}
           </footer>
         </div>
       </>
