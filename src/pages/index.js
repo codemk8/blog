@@ -5,6 +5,8 @@ import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
 
+
+import "../styles/layout-overide.css"
 const IndexPage = () => (
   <Layout>
     <SEO title="Codemk8" keywords={[`microservice`, `go-lang`, `blog`]} />
