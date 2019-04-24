@@ -5,3 +5,6 @@
  */
 
 // You can delete this file if you're not using it
+import "./src/styles/global.css"
+import "./src/styles/prismjs/themes/prism-solarizedlight.css"
+import "./src//styles/prismjs/plugins/line-numbers/prism-line-numbers.css"
