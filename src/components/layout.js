@@ -12,7 +12,7 @@ import { StaticQuery, graphql } from "gatsby"
 import Header from "./header"
 import "./layout.css"
 import Media from "react-media"
-import Helmet from "react-helmet"
+// import Helmet from "react-helmet"
 import Sidebar from "./sidebar"
 
 const Layout = ({ children }) => (
@@ -73,7 +73,7 @@ const Layout = ({ children }) => (
             <div style={{ flex: 1 }}>
                 <Sidebar
                   title="CodeMk8"
-                  description="Articles on coding: go-lang, microservice, cloud, C++ etc."
+                  description="Articles on coding: microservice, cloud computing, go-lang, C++ etc."
                 />
                 <Sidebar
                   title="Email"
