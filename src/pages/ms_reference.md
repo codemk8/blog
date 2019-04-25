@@ -1,7 +1,7 @@
 ---
 path: "/secret/note"
 date: "2019-05-07"
-title: "Some notes"
+title2: "Some notes"
 ---
 
 ## title
