@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "gatsby-link";
+import { graphql } from 'gatsby'
 // import Helmet from "react-helmet";
 import '../styles/blog-listing.css';
 import Layout from "../components/layout"
@@ -37,7 +38,6 @@ export const pageQuery = graphql`
             title
             date(formatString: "MMMM DD, YYYY")
             path
-            secret
           }
         }
       }
