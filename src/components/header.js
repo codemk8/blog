@@ -24,7 +24,7 @@ const Header = () => (
             textDecoration: 'none',
           }}
         >
-          CodeMk8
+          articles on coding: microservice, cloud, go-lang, C++ etc.
         </Link>
       </h1>
     </div>
