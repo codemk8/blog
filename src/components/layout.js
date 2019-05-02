@@ -77,7 +77,7 @@ const Layout = ({ children }) => (
                 />
                 <Sidebar
                   title="Email"
-                  description="codemk8 in gmail"
+                  description="codemk8 at gmail"
                 />
               </div>
             </div>
