@@ -71,7 +71,7 @@ The checking, adding and updating of users on the database via dynamoDB operatio
 
 After build the binary, we can run the server on a host with aws credentials:
 
-```
+```bash
 ./bin/muser --addr 127.0.0.1:8000 --region us-west-2 --table dev.muser.codemk8
 ```
 
@@ -81,24 +81,25 @@ To test the server, we can issue some simple curl commands:
 
 * To register a user 
 
-```
+```bash
 $ curl -X POST -H "Content-Type: application/json" \
-        -d '{"user_name": "test_user", "password": "secret"}' http://localhost:8000/v1/user/register
+        -d '{"user_name": "test_user", "password": "secret"}' \
+        http://localhost:8000/v1/user/register
 ```
 
 * To authenticate a user
 
-```
+```bash
 $ curl -X GET --user test_user:password  http://localhost:8000/v1/user/auth
 ```
 
 * To change the password
 
-```
+```bash
 $ curl -X POST -H "Content-Type: application/json" \
         -d '{"user_name": "test_user", "password": "secret", "new_password":"secret2"}' \
         http://localhost:8000/v1/user/update
-# Change pack
+# Change back
 $ curl -X POST -H "Content-Type: application/json" \
         -d '{"user_name": "test_user", "password": "secret2", "new_password":"secret"}' \
         http://localhost:8000/v1/user/update
