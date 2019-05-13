@@ -19,7 +19,7 @@ First let's collect our requirements to provide a user registration service. In 
 
 # Design Choices
 
-There are many ways to implement a microservice. Here we make several opinionated design choices. 
+There are many ways to implement a microservice. Here we make several opinionated design decisions. 
 
 1. For interface, we decide to expose the service via Restful HTTP endpoints. Other options include (g)RPC or message queue, which we will try later. 
 2. For persistent storage of user information, we decide to use AWS's DynamoDB, which is a scalable key-value schema-less database. Even though this requires some prior configurations on AWS, the benefits of doing so are enormous:
@@ -33,6 +33,8 @@ For 1, each of the above service corresponds to a RESTful HTTP endpoint, more sp
 * GET with basic authentication in the HTTP request;
 
 # Passcode Hashing and Checking
+
+The password verification scheme is based on `bcrypt` package in go-lang. Given a plain-text password, `GenerateFromPassword` generates a per-user hash code (embedded with a random salt and the level of difficulty). The real password is thrown away after the hash code has been generated. In future authentications, we use the one-way function `CompareHashAndPassword` to verify if the given password matches with the stored hash code.
 
 ```go
 import "golang.org/x/crypto/bcrypt"
@@ -50,8 +52,57 @@ func CheckPasswordHash(password, hash string) bool {
 
 # DynamoDB Schema
 
+We choose `dynamoDB` for fast prototyping. We start with the simpliest schema:
+
+```go
+type User struct {
+	UserName string
+	Pass     string
+	Created  int64
+	Data     map[string]interface{}
+}
+```
+
+where `UserName` is the primary key.
+
+The checking, adding and updating of users on the database via dynamoDB operations can be found at [client.go](https://github.com/codemk8/muser/blob/master/pkg/dynamodb/client.go).
+
 # Deploy and Test
 
+After build the binary, we can run the server on a host with aws credentials:
+
+```
+./bin/muser --addr 127.0.0.1:8000 --region us-west-2 --table dev.muser.codemk8
+```
+
+Note this assumes we have created a database named `dev.muser.codemk8` at `us-west-2` region.
+
+To test the server, we can issue some simple curl commands:
+
+* To register a user 
+
+```
+$ curl -X POST -H "Content-Type: application/json" \
+        -d '{"user_name": "test_user", "password": "secret"}' http://localhost:8000/v1/user/register
+```
+
+* To authenticate a user
+
+```
+$ curl -X GET --user test_user:password  http://localhost:8000/v1/user/auth
+```
+
+* To change the password
+
+```
+$ curl -X POST -H "Content-Type: application/json" \
+        -d '{"user_name": "test_user", "password": "secret", "new_password":"secret2"}' \
+        http://localhost:8000/v1/user/update
+# Change pack
+$ curl -X POST -H "Content-Type: application/json" \
+        -d '{"user_name": "test_user", "password": "secret2", "new_password":"secret"}' \
+        http://localhost:8000/v1/user/update
+```
 
 # Code
 
