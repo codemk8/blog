@@ -26,7 +26,7 @@ There are many ways to implement a microservice. Here we make several opinionate
     * We no longer worry about loss of data;
     * We do not need to set up and maintain a database ourselves;
 
-For 1, each of the above service, corresponds to a RESTful HTTP endpoint, more specifically:
+For 1, each of the above service corresponds to a RESTful HTTP endpoint, more specifically:
 
 * POST with user name and password in the HTTP request (JSON body);
 * POST with user name, old password and new password in the HTTP request (JSON body);
@@ -49,4 +49,11 @@ func CheckPasswordHash(password, hash string) bool {
 ```
 
 # DynamoDB Schema
+
+# Deploy and Test
+
+
+# Code
+
+The complete code can be found at [https://github.com/codemk8/muser](https://github.com/codemk8/muser).
 
