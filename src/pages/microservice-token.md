@@ -14,3 +14,7 @@ In the previous post ([user registration microservice](https://codemk8.dev/blog/
 
 The complete code can be found at [https://github.com/codemk8/mtoken](https://github.com/codemk8/mtoken).
 
+
+# Reference
+
+* [For using browser cookie](https://www.sohamkamani.com/blog/golang/2019-01-01-jwt-authentication/)
