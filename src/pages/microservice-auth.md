@@ -6,14 +6,13 @@ title: "Build Cloud Native Microservices (I) -- User Registration"
 
 # Introduction
 
-Recent years have witnessed the proliferation of building applications with microservices. This serie of blog posts intends to share some concrete examples of building such microservices in a cloud-native environment.
-
+Some people now believe that microservice is the closest thing as the silver bullet to build web applications. This serie of blog posts intends to share some concrete examples of building small but essential microservices in a cloud-native environment. We start from building a user registration service.
 
 # Objectives
 
-First let's collect our requirements to provide a user registration service. In this service, we will provide three functionalities:
+First let's collect our requirements to provide such a service. We would like to provide three functionalities:
 
-* User registration with user name and password
+* User registration with user name (or email) and password
 * Password update with user name, old password and new password
 * User authentication with user name and password
 
@@ -21,7 +20,7 @@ First let's collect our requirements to provide a user registration service. In 
 
 There are many ways to implement a microservice. Here we make several opinionated design decisions. 
 
-1. For interface, we decide to expose the service via Restful HTTP endpoints. Other options include (g)RPC or message queue, which we will try later. 
+1. For interface, we decide to expose the service via Restful HTTP endpoints. Other options include (g)RPC, message queue or GraphQL. Since this service is so fundamental, we pick REST.
 2. For persistent storage of user information, we decide to use AWS's DynamoDB, which is a scalable key-value schema-less database. Even though this requires some prior configurations on AWS, the benefits of doing so are enormous:
     * We no longer worry about loss of data;
     * We do not need to set up and maintain a database ourselves;
